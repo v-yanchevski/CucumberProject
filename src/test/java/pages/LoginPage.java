@@ -1,23 +1,12 @@
 package pages;
 
+import bases.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.LoginPage;
-import java.time.Duration;
 
-public class LoginPage {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        PageFactory.initElements(driver, this);
-    }
+public class LoginPage extends BasePage {
 
     @FindBy(id = "user-name")
     WebElement usernameInput;
@@ -27,6 +16,10 @@ public class LoginPage {
 
     @FindBy(id = "login-button")
     WebElement loginButton;
+
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void enterUsername(String userName) {
         wait.until(ExpectedConditions.visibilityOf(usernameInput));
