@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.*;
 import org.junit.Assert;
 import pages.LoginPage;
 import pages.ProductPage;
@@ -14,12 +15,13 @@ public class LoginSteps extends BaseSteps {
     protected ProductPage productPage;
     protected String expectedURL = "https://www.saucedemo.com/inventory.html";
 
-    @Given("a user opens a browser")
-    public void a_user_opens_a_browser() {
-        setUp();
+
+    @Before
+    public void openBrowser() {
+        setUpDriver();
     }
 
-    @And("a user navigates to login page")
+    @Given("a user navigates to login page")
     public void a_user_navigates_to_login_page() {
         driver.get("https://www.saucedemo.com/");
         driver.manage().window().maximize();
@@ -47,7 +49,11 @@ public class LoginSteps extends BaseSteps {
     public void a_user_is_navigated_to_the_product_page() {
         String actualURL = productPage.getURL();
         Assert.assertEquals(expectedURL, actualURL);
-        tearDown();
+    }
+
+    @After
+    public void closeBrowser(){
+        tearDownDriver();
     }
 
 }

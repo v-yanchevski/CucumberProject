@@ -11,7 +11,7 @@ public class BaseSteps {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public void setUp() {
+    public void setUpDriver() {
         ChromeOptions options = new ChromeOptions();
         options.setBinary("C:\\Drivers\\chrome-win64\\chrome.exe");
         System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver-win64\\chromedriver.exe");
@@ -20,7 +20,7 @@ public class BaseSteps {
 
     }
 
-    public void tearDown() {
+    public void tearDownDriver() {
         driver.manage().deleteAllCookies();
         driver.quit();
     }
