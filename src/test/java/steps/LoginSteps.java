@@ -1,11 +1,13 @@
 package steps;
 
 import bases.BaseSteps;
+import driverManager.DriverManager;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.*;
 import org.junit.Assert;
 import pages.LoginPage;
 import pages.ProductPage;
@@ -15,10 +17,9 @@ public class LoginSteps extends BaseSteps {
     protected ProductPage productPage;
     protected String expectedURL = "https://www.saucedemo.com/inventory.html";
 
-
     @Before
     public void openBrowser() {
-        setUpDriver();
+        DriverManager.setUpDriver();
     }
 
     @Given("a user navigates to login page")
@@ -39,7 +40,7 @@ public class LoginSteps extends BaseSteps {
 
     @And("a user clicks on login button")
     public ProductPage a_user_clicks_on_login_button() {
-        productPage = loginPage.clickLoginBtn();
+        productPage = loginPage.clickLoginButton();
         return new ProductPage(driver);
 
     }
@@ -52,8 +53,7 @@ public class LoginSteps extends BaseSteps {
     }
 
     @After
-    public void closeBrowser(){
-        tearDownDriver();
+    public void closeBrowser() {
+        DriverManager.tearDownDriver();
     }
-
 }

@@ -3,6 +3,7 @@ package bases;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.SideMenu;
 
 import java.time.Duration;
 
@@ -15,5 +16,10 @@ public class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
+    }
+
+    public void clickSideMenu() {
+
+        new SideMenu(driver);
     }
 }
