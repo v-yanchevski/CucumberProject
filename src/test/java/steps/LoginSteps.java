@@ -13,9 +13,11 @@ import pages.LoginPage;
 import pages.ProductPage;
 
 public class LoginSteps extends BaseSteps {
-    protected LoginPage loginPage;
-    protected ProductPage productPage;
-    protected String expectedURL = "https://www.saucedemo.com/inventory.html";
+    private LoginPage loginPage;
+    private ProductPage productPage;
+    private final String userName = "standard_user";
+    private final String password = "secret_sauce";
+    private final String expectedURL = "https://www.saucedemo.com/inventory.html";
 
     @Before
     public void openBrowser() {
@@ -33,8 +35,8 @@ public class LoginSteps extends BaseSteps {
     public void a_user_enters_valid_credentials() {
 
         loginPage = new LoginPage(driver);
-        loginPage.enterUsername("standard_user");
-        loginPage.enterPassword("secret_sauce");
+        loginPage.enterUsername(userName);
+        loginPage.enterPassword(password);
 
     }
 
