@@ -10,11 +10,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.LoginPage;
-import pages.ProductPage;
+import pages.ProductsPage;
 
 public class LoginSteps extends BaseSteps {
     private LoginPage loginPage;
-    private ProductPage productPage;
+    private ProductsPage productsPage;
     private final String userName = "standard_user";
     private final String password = "secret_sauce";
     private final String expectedURL = "https://www.saucedemo.com/inventory.html";
@@ -41,16 +41,16 @@ public class LoginSteps extends BaseSteps {
     }
 
     @And("a user clicks on login button")
-    public ProductPage a_user_clicks_on_login_button() {
-        productPage = loginPage.clickLoginButton();
-        return new ProductPage(driver);
+    public ProductsPage a_user_clicks_on_login_button() {
+        productsPage = loginPage.clickLoginButton();
+        return new ProductsPage(driver);
 
     }
 
 
     @Then("a user is navigated to the product page")
     public void a_user_is_navigated_to_the_product_page() {
-        String actualURL = productPage.getURL();
+        String actualURL = productsPage.getURL();
         Assert.assertEquals(expectedURL, actualURL);
     }
 

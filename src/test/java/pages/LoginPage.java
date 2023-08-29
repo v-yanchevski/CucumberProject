@@ -33,16 +33,16 @@ public class LoginPage extends BasePage {
         passwordInput.sendKeys(password);
     }
 
-    public ProductPage clickLoginButton() {
+    public ProductsPage clickLoginButton() {
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
-        return new ProductPage(driver);
+        return new ProductsPage(driver);
     }
 
     public String getURL() {
         return driver.getCurrentUrl();
     }
 
-    public ProductPage successfulLogin(String userName, String password) {
+    public ProductsPage successfulLogin(String userName, String password) {
         enterUsername(userName);
         enterPassword(password);
         return clickLoginButton();
