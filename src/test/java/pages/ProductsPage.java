@@ -16,9 +16,6 @@ public class ProductsPage extends BasePage {
     @FindBy(xpath = "//div[@class='inventory_item_price']")
     List<WebElement> productsPrice;
 
-    @FindBy(xpath = "//button[text()='Add to cart']")
-    List<WebElement> addToCartButtons;
-
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     WebElement addToCartButtonIndex0;
 
@@ -28,16 +25,17 @@ public class ProductsPage extends BasePage {
     @FindBy(css = "#shopping_cart_container")
     WebElement shoppingCartIcon;
 
+    @FindBy(xpath = "//button[contains(@id,'remove')]")
+    WebElement removeFromCartButtons;
+
+    @FindBy(className = "shopping_cart_badge")
+    List<WebElement> cartBadge;
+
     public ProductsPage(WebDriver driver) {
         super(driver);
 
     }
-    public ProductsPage successfulLogin(String userName, String password) {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsername(userName);
-        loginPage.enterPassword(password);
-        return loginPage.clickLoginButton();
-    }
+
     public void clickAddToCartButtons() {
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonIndex0)).click();
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonIndex2)).click();
@@ -61,16 +59,8 @@ public class ProductsPage extends BasePage {
         return true;
     }
 
-    public boolean areAddToCartVisible() {
-        for (WebElement element : addToCartButtons) {
-            if (!element.isDisplayed()) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    public boolean isProductAddedToTheCart() {
+    public boolean areProductsAddedToTheCart() {
         wait.until(ExpectedConditions.visibilityOf(shoppingCartIcon));
         String badgeValueText = shoppingCartIcon.getText();
         int badgeValue = Integer.parseInt(badgeValueText);
@@ -79,10 +69,26 @@ public class ProductsPage extends BasePage {
 
     }
 
+    public void clickRemoveFromCartButtons() {
+        wait.until(ExpectedConditions.elementToBeClickable(removeFromCartButtons)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(removeFromCartButtons)).click();
+
+    }
+
+    public boolean areProductsRemovedFromTheCart() {
+        wait.until(ExpectedConditions.visibilityOf(shoppingCartIcon));
+        if (cartBadge.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public CartPage clickOnCartIcon() {
         shoppingCartIcon.click();
         return new CartPage(driver);
     }
+
     public String getURL() {
         return driver.getCurrentUrl();
     }
