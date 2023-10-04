@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
-
 public class CartPage extends BasePage {
 
     @FindBy(xpath = "//button[contains(@id,'remove')]")

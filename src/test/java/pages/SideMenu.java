@@ -18,12 +18,12 @@ public class SideMenu extends BasePage {
         super(driver);
     }
 
-    public void clickSideMenu() {
+    public void clickSideMenu(){
         wait.until(ExpectedConditions.visibilityOf(sideMenu));
         sideMenu.click();
     }
 
-    public LoginPage clickLogoutButton() {
+    public LoginPage clickLogoutButton(){
         wait.until(ExpectedConditions.visibilityOf(logoutButton));
         logoutButton.click();
         return new LoginPage(driver);

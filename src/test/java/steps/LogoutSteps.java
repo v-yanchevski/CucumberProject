@@ -15,7 +15,9 @@ public class LogoutSteps extends BaseSteps {
 
     private LoginPage loginPage;
     private SideMenu sideMenu;
-    private String expectedURL = "https://www.saucedemo.com/";
+    private final String userName = "standard_user";
+    private final String password = "secret_sauce";
+    private final String expectedURL = "https://www.saucedemo.com/";
 
     @Before
     public void openBrowser() {
@@ -26,7 +28,7 @@ public class LogoutSteps extends BaseSteps {
     public void a_user_is_on_product_page() {
         driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
-        loginPage.successfulLogin("standard_user", "secret_sauce");
+        loginPage.successfulLogin(userName, password);
 
     }
 

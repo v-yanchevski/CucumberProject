@@ -12,7 +12,7 @@ import org.junit.Assert;
 import pages.*;
 
 
-public class CheckoutSteps extends BaseSteps {
+    public class CheckoutSteps extends BaseSteps {
     private LoginPage loginPage;
     private ProductsPage productsPage;
     private CartPage cartPage;
@@ -26,7 +26,10 @@ public class CheckoutSteps extends BaseSteps {
     public void openBrowser() {
         DriverManager.setUpDriver();
     }
-
+    @After
+    public void closeBrowser() {
+        DriverManager.tearDownDriver();
+    }
 
     @Given("the user is on the checkout step page")
     public void the_user_is_on_the_checkout_step_page() {
@@ -40,12 +43,10 @@ public class CheckoutSteps extends BaseSteps {
         cartPage = new CartPage(driver);
         checkoutPage = cartPage.clickCheckoutButton();
     }
-
     @When("the user enters first name {string}")
     public void the_user_enters_first_name(String firstName) {
-        checkoutPage.setFirstName(firstName);
+            checkoutPage.setFirstName(firstName);
     }
-
     @And("the user enters last name {string}")
     public void userEntersPostalCode(String lastName) {
         checkoutPage.setFirstName(lastName);
@@ -55,7 +56,6 @@ public class CheckoutSteps extends BaseSteps {
     public void the_user_enters_postal_code(String postalCode) {
         checkoutPage.setPostalCode(Integer.parseInt(postalCode));
     }
-
     @And("the user clicks the {string} button")
     public void the_user_clicks_the_button(String string) {
         checkoutOverview = new CheckoutOverview(driver);
@@ -66,11 +66,6 @@ public class CheckoutSteps extends BaseSteps {
     @Then("the user is redirected to checkout overview page")
     public void the_user_is_redirected_to_checkout_overview_page() {
         Assert.assertEquals(expectedCheckoutPageURL, checkoutOverview.getURL());
-    }
-
-    @After
-    public void closeBrowser() {
-        DriverManager.tearDownDriver();
     }
 
 }

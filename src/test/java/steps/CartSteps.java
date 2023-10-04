@@ -27,6 +27,10 @@ public class CartSteps extends BaseSteps {
     public void openBrowser() {
         DriverManager.setUpDriver();
     }
+    @After
+    public void closeBrowser() {
+        DriverManager.tearDownDriver();
+    }
 
     @Given("user is on cart page")
     public void user_is_on_cart_page() {
@@ -66,8 +70,4 @@ public class CartSteps extends BaseSteps {
 
     }
 
-    @After
-    public void closeBrowser() {
-        DriverManager.tearDownDriver();
-    }
 }
