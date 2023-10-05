@@ -19,14 +19,13 @@ public class CartSteps extends BaseSteps {
     private ProductsPage productsPage;
     private CartPage cartPage;
     private CheckoutPage checkoutPage;
-    private final String userName = "standard_user";
-    private final String password = "secret_sauce";
     private final String expectedCartPageURL = "https://www.saucedemo.com/checkout-step-one.html";
 
     @Before
     public void openBrowser() {
         DriverManager.setUpDriver();
     }
+
     @After
     public void closeBrowser() {
         DriverManager.tearDownDriver();
@@ -34,8 +33,7 @@ public class CartSteps extends BaseSteps {
 
     @Given("user is on cart page")
     public void user_is_on_cart_page() {
-        driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
+        BaseSteps.navigateToLoginURL();
         loginPage = new LoginPage(driver);
         loginPage.successfulLogin();
 
@@ -64,6 +62,7 @@ public class CartSteps extends BaseSteps {
         cartPage = new CartPage(driver);
         checkoutPage = cartPage.clickCheckoutButton();
     }
+
     @Then("the user is navigated to information checkout page")
     public void the_user_is_navigated_to_information_checkout_page() {
         Assert.assertEquals(expectedCartPageURL, checkoutPage.getURL());
