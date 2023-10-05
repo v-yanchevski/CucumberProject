@@ -44,7 +44,7 @@ public class CartSteps extends BaseSteps {
     @And("there are two products in the cart")
     public void there_are_two_products_in_the_cart() {
         productsPage = new ProductsPage(driver);
-        productsPage.clickAddToCartButtons();
+        productsPage.addTwoItemToTheCart();
         productsPage.clickOnCartIcon();
     }
 

@@ -36,7 +36,7 @@ public class ProductsPage extends BasePage {
 
     }
 
-    public void clickAddToCartButtons() {
+    public void addTwoItemToTheCart() {
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonIndex0)).click();
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonIndex2)).click();
     }

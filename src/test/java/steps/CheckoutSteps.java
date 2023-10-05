@@ -38,7 +38,7 @@ import pages.*;
         loginPage = new LoginPage(driver);
         loginPage.successfulLogin();
         productsPage = new ProductsPage(driver);
-        productsPage.clickAddToCartButtons();
+        productsPage.addTwoItemToTheCart();
         productsPage.clickOnCartIcon();
         cartPage = new CartPage(driver);
         checkoutPage = cartPage.clickCheckoutButton();

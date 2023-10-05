@@ -9,8 +9,8 @@ Feature: Products management
 
 
   Scenario: User adds products to the cart
-    When a user clicks on Add to cart button
-    Then the product is added to the cart
+    When a user clicks on Add to cart button for products with indexes 0 and 2
+    Then the products are added to the cart
 
 
   Scenario: User removes products from the cart

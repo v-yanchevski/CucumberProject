@@ -18,8 +18,6 @@ public class ProductsSteps extends BaseSteps {
     private LoginPage loginPage;
     private ProductsPage productsPage;
     private CartPage cartPage;
-    private final String userName = "standard_user";
-    private final String password = "secret_sauce";
     private final String expectedCartPageURL = "https://www.saucedemo.com/cart.html";
 
     @Before
@@ -29,8 +27,7 @@ public class ProductsSteps extends BaseSteps {
 
     @Given("a user is on inventory page")
     public void a_user_is_on_inventory_page() {
-        driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
+        BaseSteps.navigateToLoginURL();
         loginPage = new LoginPage(driver);
         loginPage.successfulLogin();
     }
@@ -44,14 +41,14 @@ public class ProductsSteps extends BaseSteps {
     }
 
 
-    @When("a user clicks on Add to cart button")
+    @When("a user clicks on Add to cart button for products with indexes 0 and 2")
     public void a_user_clicks_on_add_to_cart_button() {
 
         productsPage = new ProductsPage(driver);
-        productsPage.clickAddToCartButtons();
+        productsPage.addTwoItemToTheCart();
     }
 
-    @Then("the product is added to the cart")
+    @Then("the products are added to the cart")
     public void the_product_is_added_to_the_cart() {
         Assert.assertTrue(productsPage.areProductsAddedToTheCart());
     }
@@ -60,7 +57,7 @@ public class ProductsSteps extends BaseSteps {
     @And("a user has added products to the cart")
     public void a_user_has_added_products_to_the_cart() {
         productsPage = new ProductsPage(driver);
-        productsPage.clickAddToCartButtons();
+        productsPage.addTwoItemToTheCart();
     }
 
     @When("a user clicks on Remove button")
