@@ -15,8 +15,7 @@ import pages.ProductsPage;
 public class LoginSteps extends BaseSteps {
     private LoginPage loginPage;
     private ProductsPage productsPage;
-    private final String userName = "standard_user";
-    private final String password = "secret_sauce";
+
     private final String expectedURL = "https://www.saucedemo.com/inventory.html";
 
     @Before
@@ -26,17 +25,15 @@ public class LoginSteps extends BaseSteps {
 
     @Given("a user navigates to login page")
     public void a_user_navigates_to_login_page() {
-        driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
-
+        BaseSteps.navigateToLoginURL();
     }
 
     @When("a user enters valid credentials")
     public void a_user_enters_valid_credentials() {
 
         loginPage = new LoginPage(driver);
-        loginPage.enterUsername(userName);
-        loginPage.enterPassword(password);
+        loginPage.enterUsername();
+        loginPage.enterPassword();
 
     }
 

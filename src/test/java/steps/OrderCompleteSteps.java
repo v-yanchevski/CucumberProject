@@ -32,7 +32,7 @@ public class OrderCompleteSteps extends BaseSteps {
             driver.get("https://www.saucedemo.com/");
             driver.manage().window().maximize();
             loginPage = new LoginPage(driver);
-            loginPage.successfulLogin(userName, password);
+            loginPage.successfulLogin();
             productsPage = new ProductsPage(driver);
             productsPage.clickAddToCartButtons();
             productsPage.clickOnCartIcon();

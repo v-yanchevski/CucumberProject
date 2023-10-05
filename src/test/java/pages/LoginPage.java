@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static bases.BaseSteps.*;
+
 public class LoginPage extends BasePage {
 
     @FindBy(id = "user-name")
@@ -21,13 +23,13 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void enterUsername(String userName) {
+    public void enterUsername() {
         wait.until(ExpectedConditions.visibilityOf(usernameInput));
         usernameInput.click();
         usernameInput.sendKeys(userName);
     }
 
-    public void enterPassword(String password) {
+    public void enterPassword() {
         wait.until(ExpectedConditions.visibilityOf(passwordInput));
         passwordInput.click();
         passwordInput.sendKeys(password);
@@ -42,9 +44,9 @@ public class LoginPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public ProductsPage successfulLogin(String userName, String password) {
-        enterUsername(userName);
-        enterPassword(password);
+    public ProductsPage successfulLogin() {
+        enterUsername();
+        enterPassword();
         return clickLoginButton();
     }
 

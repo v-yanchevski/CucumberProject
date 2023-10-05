@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/feature",
         glue = "steps",
         dryRun = false,
+        tags = "@login",
         plugin= {"pretty"}
 )
 public class TestRunner {

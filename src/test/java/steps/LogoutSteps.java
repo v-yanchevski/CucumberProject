@@ -28,7 +28,7 @@ public class LogoutSteps extends BaseSteps {
     public void a_user_is_on_product_page() {
         driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
-        loginPage.successfulLogin(userName, password);
+        loginPage.successfulLogin();
 
     }
 
