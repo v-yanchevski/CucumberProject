@@ -11,6 +11,9 @@ public class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    public static String orderFirstName = "John";
+    public static String orderLastName = "Doe";
+    public static String orderPostalCode = "12345";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

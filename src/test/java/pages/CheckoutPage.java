@@ -30,22 +30,22 @@ public class CheckoutPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName() {
         wait.until(ExpectedConditions.visibilityOf(firstNameInput));
         firstNameInput.click();
-        firstNameInput.sendKeys(firstName);
+        firstNameInput.sendKeys(orderFirstName);
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName() {
         wait.until(ExpectedConditions.visibilityOf(lastNameInput));
         lastNameInput.click();
-        lastNameInput.sendKeys(lastName);
+        lastNameInput.sendKeys(orderLastName);
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode() {
         wait.until(ExpectedConditions.visibilityOf(postalCodeInput));
         postalCodeInput.click();
-        postalCodeInput.sendKeys(String.valueOf(postalCode));
+        postalCodeInput.sendKeys(String.valueOf(orderPostalCode));
     }
 
     public CheckoutOverview clickContinueButton() {

@@ -17,9 +17,6 @@ public class OrderCompleteSteps extends BaseSteps {
         private CheckoutPage checkoutPage;
         private CheckoutOverview checkoutOverview;
         private CheckoutComplete checkoutComplete;
-        private final String userName = "standard_user";
-        private final String password = "secret_sauce";
-
         private final String expectedHeadline = "Thank you for your order!";
 
         @Before
@@ -29,8 +26,7 @@ public class OrderCompleteSteps extends BaseSteps {
 
         @Given("a user is on checkout overview page")
         public void a_user_is_on_checkout_overview_page() {
-            driver.get("https://www.saucedemo.com/");
-            driver.manage().window().maximize();
+          BaseSteps.navigateToLoginURL();
             loginPage = new LoginPage(driver);
             loginPage.successfulLogin();
             productsPage = new ProductsPage(driver);
@@ -38,9 +34,9 @@ public class OrderCompleteSteps extends BaseSteps {
             productsPage.clickOnCartIcon();
             cartPage = new CartPage(driver);
             checkoutPage = cartPage.clickCheckoutButton();
-            checkoutPage.setFirstName("John");
-            checkoutPage.setLastName("Doe");
-            checkoutPage.setPostalCode(12345);
+            checkoutPage.setFirstName();
+            checkoutPage.setLastName();
+            checkoutPage.setPostalCode();
             checkoutOverview = new CheckoutOverview(driver);
             checkoutOverview = checkoutPage.clickContinueButton();
         }
@@ -49,8 +45,6 @@ public class OrderCompleteSteps extends BaseSteps {
         public void a_user_clicks_on_finish_button() {
             checkoutComplete = new CheckoutComplete(driver);
             checkoutComplete = checkoutOverview.clickFinishButton();
-
-
         }
 
         @Then("a user sees an order confirmation headline")

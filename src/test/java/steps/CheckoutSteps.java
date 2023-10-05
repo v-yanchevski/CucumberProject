@@ -12,20 +12,19 @@ import org.junit.Assert;
 import pages.*;
 
 
-    public class CheckoutSteps extends BaseSteps {
+public class CheckoutSteps extends BaseSteps {
     private LoginPage loginPage;
     private ProductsPage productsPage;
     private CartPage cartPage;
     private CheckoutPage checkoutPage;
-    private final String userName = "standard_user";
-    private final String password = "secret_sauce";
     CheckoutOverview checkoutOverview;
-    private final String expectedCheckoutPageURL = "https://www.saucedemo.com/checkout-step-one.html";
+    private final String expectedCheckoutPageURL = "https://www.saucedemo.com/checkout-step-two.html";
 
     @Before
     public void openBrowser() {
         DriverManager.setUpDriver();
     }
+
     @After
     public void closeBrowser() {
         DriverManager.tearDownDriver();
@@ -33,8 +32,7 @@ import pages.*;
 
     @Given("the user is on the checkout step page")
     public void the_user_is_on_the_checkout_step_page() {
-        driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
+        BaseSteps.navigateToLoginURL();
         loginPage = new LoginPage(driver);
         loginPage.successfulLogin();
         productsPage = new ProductsPage(driver);
@@ -43,21 +41,24 @@ import pages.*;
         cartPage = new CartPage(driver);
         checkoutPage = cartPage.clickCheckoutButton();
     }
-    @When("the user enters first name {string}")
-    public void the_user_enters_first_name(String firstName) {
-            checkoutPage.setFirstName(firstName);
-    }
-    @And("the user enters last name {string}")
-    public void userEntersPostalCode(String lastName) {
-        checkoutPage.setFirstName(lastName);
+
+    @When("the user enters first name")
+    public void the_user_enters_first_name() {
+        checkoutPage.setFirstName();
     }
 
-    @And("the user enters postal code {string}")
-    public void the_user_enters_postal_code(String postalCode) {
-        checkoutPage.setPostalCode(Integer.parseInt(postalCode));
+    @And("the user enters last name")
+    public void the_user_enters_last_name() {
+        checkoutPage.setLastName();
     }
-    @And("the user clicks the {string} button")
-    public void the_user_clicks_the_button(String string) {
+
+    @And("the user enters postal code")
+    public void the_user_enters_postal_code() {
+        checkoutPage.setPostalCode();
+    }
+
+    @And("the user clicks the Continue button")
+    public void the_user_clicks_the_button() {
         checkoutOverview = new CheckoutOverview(driver);
         checkoutOverview = checkoutPage.clickContinueButton();
 

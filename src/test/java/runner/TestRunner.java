@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
         features = "src/test/feature",
         glue = "steps",
         dryRun = false,
-      //  tags = "@cart",
         plugin= {"pretty"}
 )
 public class TestRunner {
